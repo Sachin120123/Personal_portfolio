@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personal Portfolio Website</title>
+        <link rel="stylesheet" href="style.css">
+   
+    </head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <nav>
+                    <img src="images/logo.png" class="logo" width="150" height="100">
+                    <ul>
+                        <li><a href="#header">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        
+                    </ul>
+                </nav>
+                <div class="header-text">
+                    <p>Web Developer & Software Engineer</p>
+                    <h1>Hello, This is Sachin Chauhan from Pune</h1>
+                </div>
+            </div>
+        </div>
+<!-- ----------------about--------------------- -->
+        <div id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="about-col-1">
+                        <img src="images/about.jpg" >
+                    </div>
+                    <div class="about-col-2">
+                        <h1 class="sub-title">About Me</h1>
+                        <p>
+                            Hi,I'm Sachin Chauhan<br>
+                            Welcome to my digital space! I'm a passionate and dedicated web developer with 
+                            a flair for creating seamless, user-friendly experiences. 
+                            My journey in the world of web development has been fueled by a love for coding 
+                            and a commitment to turning ideas into interactive realities.
+                        </p>
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>Technical Skills</span><br>Python , Java , HTML , CSS , MS Excel</li>
+                                <li><span>Soft Skills</span><br>Leadership, Time management, Team management, Problem solving, Adaptability </li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>2022 - current</span><br>Masters of Computer Application</li>
+                                <li><span>2019 - 2022</span><br>Bachelor of Science (Computer Science)</li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<!----------------- portfolio---------------->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/stress.png" height="325">
+                <div class="layer">
+                    <h3>Stress level detector</h3>
+                    <p>The impact of stress on mental and physical health of human beings 
+                        underscores the importance of developing tools to monitor 
+                        and manage stress levels in more good way. </p>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/quiz.jpg" height="325">
+                <div class="layer">
+                    <h3>Quiz Application</h3>
+                    <p>
+                        A desktop-based quiz application is a software program designed to facilitate interactive and
+                        engaging quizzes on a personal computer.Typically, these applications offer features such as
+                        customizable question formats, multiple-choice options, time limits, and scoring mechanisms. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-----------------------Contact--------------------------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p>Email id:- sachinchavan9527@gmail.com</p>
+                <p>Contact No:-9527120123</p>
+                <p>Linkedin Profile :- www.linkedin.com/in/thesachinchauhan</p>
+                <a href="images/Resume.pdf" download class="btn btn2">Download Resume</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright by Sachin Chauhan</p>
+    </div>
+</div>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link")
+            document.getElementById(tabname).classList.add("active-tab")
+        }
+    </script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzfUiFXYV66ueoG0hMqXoIO3mewrmhk55lMuXN0INlcUcNzs5FUPeNH3rzqaNBu4TE/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function()
+            {
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+    </body>
+</html>
